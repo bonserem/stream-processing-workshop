@@ -53,7 +53,7 @@ The following code block will generate a message with a NULL key. The messages a
 ```
 from confluent_kafka import Producer
 
-p = Producer({'bootstrap.servers': 'kafka-1:9092,kafka-2:9093'})
+p = Producer({'bootstrap.servers': 'kafka-1:19092,kafka-2:19093'})
 messages = ["message1","message2","message3"]
 
 def delivery_report(err, msg):
@@ -97,7 +97,7 @@ To consume text messages through python, use the following code segment. Make su
 from confluent_kafka import Consumer, KafkaError
 
 c = Consumer({
-    'bootstrap.servers': 'kafka-1:9092,kafka-2:9093',
+    'bootstrap.servers': 'kafka-1:19092,kafka-2:19093',
     'group.id': 'test-consumer-group',
     'default.topic.config': {
         'auto.offset.reset': 'largest'
@@ -143,7 +143,7 @@ In order to separate the Avro tests from the other tests, lets create a new topi
 ```
 kafka-topics --create \
 			--if-not-exists \
-			--zookeeper zookeeper:2181 \
+			--zookeeper zookeeper-1:2181 \
 			--topic test-avro-topic \
 			--partitions 8 \
 			--replication-factor 3
